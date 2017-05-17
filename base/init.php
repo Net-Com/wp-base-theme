@@ -16,16 +16,18 @@ foreach(glob(get_stylesheet_directory().'/config/*.php') as $file) {
     require_once $file;
 }
 
-// include all widgets files
-foreach(glob(get_stylesheet_directory().'/widgets/*.php') as $file) {
-    
-    require_once $file;
-    add_action( 'widgets_init', function(){
-    	global $file;
-    	if (class_exists(basename($file, ".php"))) {
-    		register_widget( basename($file, ".php") );
-    	}
-	});
+add_action( 'widgets_init','register_nc_widget');
+
+function register_nc_widget()
+{
+    foreach(glob(get_stylesheet_directory().'/widgets/*.php') as $nc_widget_file) {
+        
+        require_once $nc_widget_file;
+
+        if (class_exists(basename($nc_widget_file, ".php"))) {
+            register_widget( basename($nc_widget_file, ".php") );
+        }
+    }
 }
 
 // include all shortcodes files
