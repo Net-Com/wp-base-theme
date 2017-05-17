@@ -1,5 +1,74 @@
 <?php 
+require_once get_stylesheet_directory().'/base/Plugin-Activation/class-tgm-plugin-activation.php';
 
+add_action( 'tgmpa_register', 'my_theme_register_required_plugins' );
+
+function my_theme_register_required_plugins() {
+
+    $plugins = array(
+
+        array(
+            'name'               => 'NC Templates Render', // The plugin name.
+            'slug'               => 'nc_tpl_render', // The plugin slug (typically the folder name).
+            'source'             => get_stylesheet_directory() . '/base/Plugin-Activation/plugins/nc_tpl_render.zip', // The plugin source.
+            'required'           => true, // If false, the plugin is only 'recommended' instead of required.
+            'force_activation'   => true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
+            'force_deactivation' => true, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
+            'is_callable'        => 'render'
+        )
+    );
+
+    $config = array(
+        'id'           => 'nc_notice',                 // Unique ID for hashing notices for multiple instances of TGMPA.
+        'default_path' => '',                      // Default absolute path to bundled plugins.
+        'menu'         => 'nc-install-plugins', // Menu slug.
+        'parent_slug'  => 'themes.php',            // Parent menu slug.
+        'capability'   => 'edit_theme_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
+        'has_notices'  => true,                    // Show admin notices or not.
+        'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
+        'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
+        'is_automatic' => false,                   // Automatically activate plugins after installation or not.
+        'message'      => '',                      // Message to output right before the plugins table.
+    );
+
+    tgmpa( $plugins, $config );
+
+}
+
+add_action( 'widgets_init','register_nc_widget');
+
+function register_nc_widget()
+{
+    foreach(glob(get_stylesheet_directory().'/widgets/*.php') as $nc_widget_file) {
+        
+        require_once $nc_widget_file;
+
+        if (class_exists(basename($nc_widget_file, ".php"))) {
+            register_widget( basename($nc_widget_file, ".php") );
+        }
+    }
+}
+
+// include all config files
+foreach(glob(get_stylesheet_directory().'/config/*.php') as $file) {
+    require_once $file;
+}
+
+// include all shortcodes files
+foreach(glob(get_stylesheet_directory().'/shortcodes/*.php') as $file) {
+    require_once $file;
+
+    if (function_exists(basename($file, ".php"))) {
+        add_shortcode(str_replace('_shortcode','',basename($file, ".php")), basename($file, ".php"));
+    }
+}
+
+add_action( 'genesis_setup', 'bsg_load_lib_files', 15 );
+function bsg_load_lib_files() {
+    foreach ( glob( dirname( __FILE__ ) . '/lib/*.php' ) as $file ) { require_once $file; }
+}
+
+remove_action( 'genesis_meta', 'genesis_load_stylesheet' );
 // add js to wordpress
 add_action( 'wp_enqueue_scripts', 'nc_enqueue_scripts' );
 function nc_enqueue_scripts() {
@@ -41,9 +110,6 @@ function disable_wp_emojicons() {
   remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
   remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
   remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-
-  // filter to remove TinyMCE emojis
-  add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
 }
 
 add_filter( 'emoji_svg_url', '__return_false' );
