@@ -1,1 +1,1 @@
-<?php var_dump($args) ?>
+Hello

@@ -1,7 +1,4 @@
 <?php
-// init genesis
-require_once( get_template_directory() . '/lib/init.php' );
-
 // init theme env
 require_once get_stylesheet_directory().'/base/init.php';
 
