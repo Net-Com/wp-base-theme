@@ -16,7 +16,7 @@ class Helloworld_widget extends WP_Widget {
 	 * @param array $instance
 	 */
 	public function widget( $args, $instance ) {
-		render('helloworld',['args'=>$args,'instance'=>$instance]);
+		render('helloworld/helloworld',['args'=>$args,'instance'=>$instance]);
 	}
 
 	/**
@@ -25,7 +25,7 @@ class Helloworld_widget extends WP_Widget {
 	 * @param array $instance The widget options
 	 */
 	public function form( $instance ) {
-		render('helloworld_form',['instance'=>$instance]);
+		render('helloworld/helloworld_form',['instance'=>$instance]);
 	}
 
 	/**
