@@ -1,12 +1,12 @@
 <?php 
 
-class Helloworld_widget extends WP_Widget {
+class ListeInfoAdvanced_widget extends WP_Widget {
 
 	/**
 	 * Sets up the widgets name etc
 	 */
 	public function __construct() {
-		parent::__construct( 'hello', 'Hello world !', ['description'=> 'Hello world !'] );
+		parent::__construct( 'pagination-advanced', 'Pagination advanced', ['description'=> 'Pagination advanced'] );
 	}
 
 	/**
@@ -16,7 +16,10 @@ class Helloworld_widget extends WP_Widget {
 	 * @param array $instance
 	 */
 	public function widget( $args, $instance ) {
-		render('widgets/helloworld/helloworld',['args'=>$args,'instance'=>$instance]);
+		$args['title']= 'Advanced';
+		$args['pods']=$pod = pods('info',['limit' => 2]);
+		$args['pagination']=$pod->pagination(['type' => 'advanced','first_text' => '<<', 'last_text' => '>>','prev_text' => '<', 'next_text' => '>']); 
+		render('widgets/listeInfo/listeInfo',['args'=>$args,'instance'=>$instance]);
 	}
 
 	/**
@@ -25,7 +28,7 @@ class Helloworld_widget extends WP_Widget {
 	 * @param array $instance The widget options
 	 */
 	public function form( $instance ) {
-		render('widgets/helloworld/helloworld_form',['instance'=>$instance]);
+		
 	}
 
 	/**
