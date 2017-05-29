@@ -11,6 +11,8 @@ require_once get_stylesheet_directory().'/base/hooks.php';
 require_once get_stylesheet_directory().'/base/class/assets.php';
 // remove comments system
 require_once get_stylesheet_directory().'/base/class/remove-comment.php';
+/*multi colums gravityforms*/
+require_once get_stylesheet_directory().'/base/class/gravityforms-bootstrap.php';
 // generate theme options
 require_once get_stylesheet_directory().'/base/customize.php';
 

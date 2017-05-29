@@ -138,6 +138,9 @@ foreach(glob(get_stylesheet_directory().'/shortcodes/*.php') as $file) {
 
     if (function_exists(basename($file, ".php"))) {
         add_shortcode(str_replace('_shortcode','',basename($file, ".php")), basename($file, ".php"));
+    }elseif (class_exists(basename($file, ".php"))) {
+      $className = basename($file, ".php");
+      New $className();
     }
 }
 
@@ -245,4 +248,18 @@ function gs_prevent_theme_update( $r, $url ) {
 	unset( $themes[ get_option( 'stylesheet' ) ] );
 	$r['body']['themes'] = serialize( $themes );
 	return $r;
+}
+
+//on enleve le author + date création
+remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
+//on enleve le bouton edit sur backoofice
+add_filter ( 'genesis_edit_post_link' , '__return_false' );
+
+add_filter( 'genesis_attr_archive-pagination' , 'nc_pagination');
+
+function nc_pagination($attrs)
+{
+  $attrs['class'] .= ' test';
+  d($attrs);
+  return $attrs;
 }
