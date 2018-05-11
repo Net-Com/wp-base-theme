@@ -1,19 +1,36 @@
 <?php
 
-// init theme env
+## Init theme env
+
 require_once get_stylesheet_directory() . '/base/init.php';
 
-// add css in wp-head
+## Load controllers
+
+$dir  = get_stylesheet_directory() . "/src/controllers/";
+$root = scandir($dir);
+
+foreach ( $root as $value ) 
+{
+    if ( strtolower(substr($value, -4)) == '.php' )
+    {
+        include($dir . $value);
+    }
+}
+
+## Add CSS
+
 $assets->addStyle('debug/htmllint.css');
 $assets->addStyle('css/main.css');
 
-// add js in bottom of body
+## Add JS
+
 $assets->addScript('js/main.js');
 
-// add image sizes
+## Add image sizes
+
 //add_image_size('featured-image', 720, 400, TRUE);
 
-// ProfilePress translation
+## ProfilePress translations
 
 /*
 add_filter('gettext', 'pp_string_translation', 10, 3);
