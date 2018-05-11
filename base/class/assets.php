@@ -1,9 +1,9 @@
 <?php 
 
-
 /**
-* assets class
-*/
+ * assets class
+ */
+
 class Assets
 {
 	private $styles;
@@ -16,8 +16,9 @@ class Assets
 
 	private function add($type , $link , $name)
 	{
-		if (!is_null($link)) {
-			if (is_null($name)) $name = sanitize_title($link);
+		if ( !is_null($link) )
+		{
+			if ( is_null($name) ) $name = sanitize_title($link);
 
 			$this->{$type}[$name] = $link;
 		}
@@ -25,7 +26,7 @@ class Assets
 	
 	public function addStyle($link=null,$name=null)
 	{
-		$this->add('styles',$link,$name);
+		$this->add('styles', $link, $name);
 		return $this;
 	}
 
@@ -36,7 +37,7 @@ class Assets
 
 	public function addScript($link=null,$name=null)
 	{
-		$this->add('scripts',$link,$name);
+		$this->add('scripts', $link,$name);
 		return $this;
 	}
 

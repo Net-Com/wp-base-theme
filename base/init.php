@@ -1,6 +1,6 @@
 <?php 
 
-// Child theme (do not remove).
+// child theme (do not remove)
 define( 'CHILD_THEME_NAME', 'NC CHILD THEME' );
 define( 'CHILD_THEME_URL', 'http://www.net-com.fr/' );
 define( 'CHILD_THEME_VERSION', '0.0.1' );

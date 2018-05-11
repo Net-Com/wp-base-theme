@@ -1,11 +1,12 @@
 <?php 
 
-class Helloworld_widget extends WP_Widget {
-
+class Helloworld_widget extends WP_Widget
+{
 	/**
 	 * Sets up the widgets name etc
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		parent::__construct( 'hello', 'Hello world !', ['description'=> 'Hello world !'] );
 	}
 
@@ -15,8 +16,9 @@ class Helloworld_widget extends WP_Widget {
 	 * @param array $args
 	 * @param array $instance
 	 */
-	public function widget( $args, $instance ) {
-		render('widgets/helloworld/helloworld',['args'=>$args,'instance'=>$instance]);
+	public function widget( $args, $instance )
+	{
+		render('widgets/helloworld/helloworld', ['args'=>$args,'instance'=>$instance]);
 	}
 
 	/**
@@ -24,7 +26,8 @@ class Helloworld_widget extends WP_Widget {
 	 *
 	 * @param array $instance The widget options
 	 */
-	public function form( $instance ) {
+	public function form( $instance )
+	{
 		render('widgets/helloworld/helloworld_form',['instance'=>$instance]);
 	}
 
@@ -34,7 +37,8 @@ class Helloworld_widget extends WP_Widget {
 	 * @param array $new_instance The new options
 	 * @param array $old_instance The previous options
 	 */
-	public function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance )
+	{
 		
 	}
 }

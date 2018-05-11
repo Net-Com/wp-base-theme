@@ -1,7 +1,7 @@
 <?php 
 
 /*
-type :
+	TYPES :
 	text
 	textarea
 	radio (with choices array)
@@ -13,6 +13,7 @@ type :
 	number
 	hidden
 	date
+	image
 */
 
 $customize_options = [
