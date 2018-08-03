@@ -22,7 +22,7 @@ class ListeInfoAdvanced_widget extends WP_Widget
 		$args['pods'] =$pod = pods('info', ['limit' => 2]);
 		$args['pagination'] = $pod->pagination(['type' => 'advanced','first_text' => '<<', 'last_text' => '>>','prev_text' => '<', 'next_text' => '>']);
 
-		render('widgets/listeInfo/listeInfo', ['args' = >$args,'instance' => $instance]);
+		render('widgets/listeInfo/listeInfo', ['args' => $args,'instance' => $instance]);
 	}
 
 	/**
