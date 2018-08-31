@@ -13,9 +13,13 @@ foreach ( $root as $value )
 {
     if ( strtolower(substr($value, -4)) == '.php' )
     {
-        include($dir . $value);
+        require($dir . $value);
     }
 }
+
+## Load Redux configuration file
+
+require_once(dirname(__FILE__) . '/config/redux.php');
 
 ## Add CSS
 
@@ -29,6 +33,17 @@ $assets->addScript('js/main.js');
 ## Add image sizes
 
 //add_image_size('featured-image', 720, 400, TRUE);
+
+## Pods meta groups (Tabify Edit Screen)
+
+/*
+add_action('pods_meta_groups', 'nc_metaboxes', 10, 2);
+
+function nc_metaboxes($type, $name)
+{
+    pods_group_add('books', 'Book Information', 'preface,isbn');
+} 
+*/
 
 ## ProfilePress translations
 
