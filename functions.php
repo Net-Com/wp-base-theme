@@ -23,12 +23,13 @@ require_once(dirname(__FILE__) . '/config/redux.php');
 
 ## Add CSS
 
-$assets->addStyle('debug/htmllint.css');
-$assets->addStyle('css/main.css');
+//$assets->addStyle('debug/htmllint.css');
+$assets->addStyle('css/bootstrap.min.css');
 
 ## Add JS
 
-$assets->addScript('js/main.js');
+$assets->addScript('js/bootstrap.bundle.min.js');
+$assets->addScript('js/bootstrap.min.js');
 
 ## Add image sizes
 
