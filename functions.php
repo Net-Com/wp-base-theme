@@ -33,6 +33,7 @@ function nc_enqueue()
     wp_enqueue_script('js-jquery', get_stylesheet_directory_uri() . '/js/jquery-3.3.1.min.js');
     wp_enqueue_script('js-bootstrap-bundle', get_stylesheet_directory_uri() . '/js/bootstrap.bundle.min.js');
     wp_enqueue_script('js-bootstrap', get_stylesheet_directory_uri() . '/js/bootstrap.min.js');
+    wp_enqueue_script('js-tarteaucitron', get_stylesheet_directory_uri() . '/js/tarteaucitron.js');
     wp_enqueue_script('js-nc', get_stylesheet_directory_uri() . '/js/app.js');
 
     wp_deregister_script('jquery');
