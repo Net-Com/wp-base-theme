@@ -21,15 +21,22 @@ foreach ( $root as $value )
 
 require_once(dirname(__FILE__) . '/config/redux.php');
 
-## Add CSS
+## Include CSS and JS files
 
-//$assets->addStyle('debug/htmllint.css');
-$assets->addStyle('css/bootstrap.min.css');
+add_action('wp', 'nc_enqueue');
 
-## Add JS
+function nc_enqueue()
+{
+    wp_enqueue_style('css-bootstrap', get_stylesheet_directory_uri() . '/css/bootstrap.min.css');
+    wp_enqueue_style('css-nc', get_stylesheet_directory_uri() . '/css/styles.css');
 
-$assets->addScript('js/bootstrap.bundle.min.js');
-$assets->addScript('js/bootstrap.min.js');
+    wp_enqueue_script('js-jquery', get_stylesheet_directory_uri() . '/js/jquery-3.3.1.min.js');
+    wp_enqueue_script('js-bootstrap-bundle', get_stylesheet_directory_uri() . '/js/bootstrap.bundle.min.js');
+    wp_enqueue_script('js-bootstrap', get_stylesheet_directory_uri() . '/js/bootstrap.min.js');
+    wp_enqueue_script('js-nc', get_stylesheet_directory_uri() . '/js/app.js');
+
+    wp_deregister_script('jquery');
+}
 
 ## Add image sizes
 
