@@ -54,6 +54,23 @@ function nc_metaboxes($type, $name)
 } 
 */
 
+## Breadcrumbs
+
+/*
+add_filter('genesis_breadcrumb_args', 'nc_breadcrumbs_text');
+
+function nc_breadcrumbs_text($args)
+{
+    $args['labels']['prefix'] = '';
+    $args['home'] = 'Accueil';
+    //$args['sep'] = '<i class="fas fa-chevron-right"></i>';
+    $args['sep'] = '>';
+    $args['prefix'] = '<div class="breadcrumbs"><div class="container">';
+    $args['suffix'] = '</div></div>';
+    return $args;
+}
+*/
+
 ## ProfilePress translations
 
 /*
